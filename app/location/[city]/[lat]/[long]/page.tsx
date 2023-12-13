@@ -1,4 +1,5 @@
 import React from "react";
+
 type Props = {
   params: {
     city: string;
@@ -6,7 +7,7 @@ type Props = {
     long: string;
   };
 };
-function WeatherPage({ params: { city, lat, long } }: Props) {
+async function WeatherPage({ params: { city, lat, long } }: Props) {
   return (
     <div>
       WeatherPage: {city} {lat} {long}
