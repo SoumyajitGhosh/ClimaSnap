@@ -1,34 +1,54 @@
-type CurrentWeather {
+type Current {
+  apparent_temperature: Float
+  cloud_cover: Int
   interval: Int
   is_day: Int
-  temperature: Float
-  time: DateTime
-  weathercode: Int
-  winddirection: Int
-  windspeed: Float
+  precipitation: Int
+  pressure_msl: Float
+  rain: Int
+  relative_humidity_2m: Int
+  showers: Int
+  snowfall: Int
+  surface_pressure: Float
+  temperature_2m: Float
+  time: String
+  weather_code: Int
+  wind_direction_10m: Int
+  wind_gusts_10m: Float
+  wind_speed_10m: Float
 }
 
-type CurrentWeatherUnits {
+type CurrentUnits {
+  apparent_temperature: String
+  cloud_cover: String
   interval: String
   is_day: String
-  temperature: String
+  precipitation: String
+  pressure_msl: String
+  rain: String
+  relative_humidity_2m: String
+  showers: String
+  snowfall: String
+  surface_pressure: String
+  temperature_2m: String
   time: String
-  weathercode: String
-  winddirection: String
-  windspeed: String
+  weather_code: String
+  wind_direction_10m: String
+  wind_gusts_10m: String
+  wind_speed_10m: String
 }
 
 type Daily {
   apparent_temperature_max: [Float]
   apparent_temperature_min: [Float]
-  sunrise: [DateTime]
-  sunset: [DateTime]
+  sunrise: [String]
+  sunset: [String]
   temperature_2m_max: [Float]
   temperature_2m_min: [Float]
-  time: [Date]
+  time: [String]
   uv_index_clear_sky_max: [Float]
   uv_index_max: [Float]
-  weathercode: [Int]
+  weather_code: [Int]
 }
 
 type DailyUnits {
@@ -41,32 +61,33 @@ type DailyUnits {
   time: String
   uv_index_clear_sky_max: String
   uv_index_max: String
-  weathercode: String
+  weather_code: String
 }
 
 type Hourly {
   apparent_temperature: [Float]
+  dew_point_2m: [Float]
   precipitation: [Float]
   precipitation_probability: [Int]
   rain: [Float]
-  relativehumidity_2m: [Int]
+  relative_humidity_2m: [Int]
   showers: [Float]
   snow_depth: [Int]
   snowfall: [Int]
   temperature_2m: [Float]
-  time: [DateTime]
+  time: [String]
   uv_index: [Float]
   uv_index_clear_sky: [Float]
-  visibility: [Int]
-  windgusts_10m: [Float]
+  wind_gusts_10m: [Float]
 }
 
 type HourlyUnits {
   apparent_temperature: String
+  dew_point_2m: String
   precipitation: String
   precipitation_probability: String
   rain: String
-  relativehumidity_2m: String
+  relative_humidity_2m: String
   showers: String
   snow_depth: String
   snowfall: String
@@ -74,13 +95,12 @@ type HourlyUnits {
   time: String
   uv_index: String
   uv_index_clear_sky: String
-  visibility: String
-  windgusts_10m: String
+  wind_gusts_10m: String
 }
 
 type Root {
-  current_weather: CurrentWeather
-  current_weather_units: CurrentWeatherUnits
+  current: Current
+  current_units: CurrentUnits
   daily: Daily
   daily_units: DailyUnits
   elevation: Int
@@ -96,7 +116,7 @@ type Root {
 
 type Query {
   myQuery(
-    current_weather: String
+    current: String
     daily: String
     hourly: String
     latitude: String

@@ -1,21 +1,41 @@
-interface CurrentWeather {
+interface Current {
+  apparent_temperature: number;
+  cloud_cover: number;
   interval: number;
   is_day: number;
-  temperature: string;
+  precipitation: number;
+  pressure_msl: number;
+  rain: number;
+  relative_humidity_2m: number;
+  showers: number;
+  snowfall: number;
+  surface_pressure: number;
+  temperature_2m: number;
   time: string;
-  weathercode: number;
-  winddirection: number;
-  windspeed: string;
+  weather_code: number;
+  wind_direction_10m: number;
+  wind_gusts_10m: number;
+  wind_speed_10m: number;
 }
 
-interface CurrentWeatherUnits {
+interface CurrentUnits {
+  apparent_temperature: string;
+  cloud_cover: string;
   interval: string;
   is_day: string;
-  temperature: string;
+  precipitation: string;
+  pressure_msl: string;
+  rain: string;
+  relative_humidity_2m: string;
+  showers: string;
+  snowfall: string;
+  surface_pressure: string;
+  temperature_2m: string;
   time: string;
-  weathercode: string;
-  winddirection: string;
-  windspeed: string;
+  weather_code: string;
+  wind_direction_10m: string;
+  wind_gusts_10m: string;
+  wind_speed_10m: string;
 }
 
 interface Daily {
@@ -28,7 +48,7 @@ interface Daily {
   time: [string];
   uv_index_clear_sky_max: [number];
   uv_index_max: [number];
-  weathercode: [number];
+  weather_code: [number];
 }
 
 interface DailyUnits {
@@ -41,15 +61,16 @@ interface DailyUnits {
   time: string;
   uv_index_clear_sky_max: string;
   uv_index_max: string;
-  weathercode: string;
+  weather_code: string;
 }
 
 interface Hourly {
   apparent_temperature: [number];
+  dew_point_2m: [number];
   precipitation: [number];
   precipitation_probability: [number];
   rain: [number];
-  relativehumidity_2m: [number];
+  relative_humidity_2m: [number];
   showers: [number];
   snow_depth: [number];
   snowfall: [number];
@@ -57,16 +78,16 @@ interface Hourly {
   time: [string];
   uv_index: [number];
   uv_index_clear_sky: [number];
-  visibility: [number];
-  windgusts_10m: [number];
+  wind_gusts_10m: [number];
 }
 
 interface HourlyUnits {
   apparent_temperature: string;
+  dew_point_2m: string;
   precipitation: string;
   precipitation_probability: string;
   rain: string;
-  relativehumidity_2m: string;
+  relative_humidity_2m: string;
   showers: string;
   snow_depth: string;
   snowfall: string;
@@ -74,13 +95,12 @@ interface HourlyUnits {
   time: string;
   uv_index: string;
   uv_index_clear_sky: string;
-  visibility: string;
-  windgusts_10m: string;
+  wind_gusts_10m: string;
 }
 
 interface Root {
-  current_weather: CurrentWeather;
-  current_weather_units: CurrentWeatherUnits;
+  current: Current;
+  current_units: CurrentUnits;
   daily: Daily;
   daily_units: DailyUnits;
   elevation: number;
