@@ -7,6 +7,10 @@ import InformationPanel from "@/components/InformationPanel";
 import TempChart from "@/components/TempChart";
 import RainChart from "@/components/RainChart";
 import HumidityChart from "@/components/HumidityChart";
+import getBasePath from "@/lib/getBasePath";
+import cleanData from "@/lib/cleanData";
+
+export const revalidate = 60*12; //Revalidates the cache (Incremental Static Regenaration)
 
 type Props = {
   params: {
@@ -30,6 +34,25 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
 
   const results = data.myQuery;
 
+  const dataToSend = cleanData(results, city);
+
+  // AI Comment on Weather
+  const res = await fetch(`${getBasePath()}/api/getWeatherSummary`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      weatherData: dataToSend,
+    }),
+  });
+
+
+  // Handle the API response here
+
+  const GPTdata = await res.json();
+  const {content}=GPTdata;
+
   return (
     <div className="flex flex-col min-h-screen md:flex-row">
       <InformationPanel city={city} lat={lat} long={long} results={results} />
@@ -45,10 +68,7 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
             </p>
           </div>
           <div className="m-2 mb-10">
-            <CalloutCard
-              message={"This is where GPT-3.5 text will go"}
-              warning={false}
-            />
+            <CalloutCard message={content} warning={false} />
           </div>
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 m-2">
             <StatCard

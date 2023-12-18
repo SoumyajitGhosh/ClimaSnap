@@ -1,4 +1,4 @@
 {
-  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/getWeatherSummary/route": "app/api/getWeatherSummary/route.js",
   "/location/[city]/[lat]/[long]/page": "app/location/[city]/[lat]/[long]/page.js"
 }
